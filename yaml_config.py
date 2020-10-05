@@ -70,10 +70,11 @@ class Config:
 
     def __call__(self, key_str: str, default=None):
         try:
-            return self[key_str]
+            val = self[key_str]
         except ConfigError:
-            pass
-        return default
+            val = None
+        val = val or default
+        return val
 
     def _check_key_str(self, key_str: str):
         if not isinstance(key_str, str):
