@@ -84,11 +84,11 @@ class Config:
 
     def _get_item_recurse(self, keys: List[str]):
         item = self._cfg
-        key_prefix = '.'
+        key_prefix = '[ROOT]'
         for key in keys:
             if (item is None) or (not isinstance(item, dict)) or (key not in item.keys()):
                 raise ConfigError(f'Cannot find {key} in {key_prefix}')
-            key_prefix += key
+            key_prefix += '.' + key
             item = item[key]
         return item
 
